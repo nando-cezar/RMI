@@ -12,18 +12,18 @@ public class LeaderService {
     private static final Logger logger = LoggerFactory.getLogger(LeaderService.class);
 
     private final RabbitTemplate rabbitTemplate;
-    private final String queueName;
+    private final String exchangeName;
 
     /**
      * Construtor que injeta as dependências necessárias e configura o nome da fila.
      *
      * @param rabbitTemplate Template do RabbitMQ para envio de mensagens.
-     * @param queueName Nome da fila para envio dos comandos SQL.
+     * @param exchangeName Nome da fila para envio dos comandos SQL.
      */
     public LeaderService(RabbitTemplate rabbitTemplate,
-                         @Value("${rabbitmq.queue.name}") String queueName) {
+                         @Value("${rabbitmq.exchange.name}") String exchangeName) {
         this.rabbitTemplate = rabbitTemplate;
-        this.queueName = queueName;
+        this.exchangeName = exchangeName;
     }
 
     /**
@@ -32,7 +32,7 @@ public class LeaderService {
      * @param sql O comando SQL a ser enviado.
      */
     public void sendSQLCommand(String sql) {
-        rabbitTemplate.convertAndSend(queueName, sql);
-        logger.info("Sent SQL command to queue {}: {}", queueName, sql);
+        rabbitTemplate.convertAndSend(exchangeName, "", sql);
+        logger.info("Sent SQL command to exchangeName {}: {}", exchangeName, sql);
     }
 }

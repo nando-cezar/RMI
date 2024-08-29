@@ -12,18 +12,11 @@ public class LeaderController {
 
     private final LeaderService leaderService;
 
-    // Injeção de dependência via construtor para promover imutabilidade
     @Autowired
     public LeaderController(LeaderService leaderService) {
         this.leaderService = leaderService;
     }
 
-    /**
-     * Endpoint para enviar comandos SQL ao líder do grupo.
-     *
-     * @param sql O comando SQL a ser enviado.
-     * @return ResponseEntity com status HTTP apropriado.
-     */
     @PostMapping("/sendSQL")
     public ResponseEntity<Void> sendSQL(@RequestBody String sql) {
         leaderService.sendSQLCommand(sql);

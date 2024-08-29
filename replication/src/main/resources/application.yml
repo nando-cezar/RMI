@@ -2,23 +2,6 @@ spring:
   application:
     name: replication
 
-  flyway:
-    enabled: true
-    baseline-on-migrate: true
-
-  datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USER}
-    password: ${DATABASE_PASSWORD}
-    driver-class-name: org.postgresql.Driver
-
-  jpa:
-    show-sql: true
-    generate-ddl: true
-    hibernate:
-      ddl-auto: create
-    database: postgresql
-
   rabbitmq:
     host: ${RABBITMQ_HOST}
     port: ${RABBITMQ_PORT}
@@ -26,5 +9,11 @@ spring:
     password: ${RABBITMQ_PASSWORD}
 
 rabbitmq:
-  queue:
-    name: ${QUEUE_NAME}
+  exchange:
+     name: ${EXCHANGE_NAME}
+
+custom:
+  rabbitmq:
+    queues:
+      - ${QUEUE_NAME_1}
+      - ${QUEUE_NAME_2}

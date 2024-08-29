@@ -1,10 +1,10 @@
-package br.edu.ifba.rmi.replication.model;
+package br.edu.ifba.rmi.consumer1.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "information") // Nome da tabela em minúsculas e plural
+@Table(name = "information")
 @Getter
 @Setter
 @NoArgsConstructor
