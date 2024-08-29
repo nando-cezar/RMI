@@ -1,7 +1,7 @@
-package br.edu.ifba.rmi.consumer1.service;
+package br.edu.ifba.rmi.consumer2.service;
 
-import br.edu.ifba.rmi.consumer1.model.InformationEntity;
-import br.edu.ifba.rmi.consumer1.repository.InformationRepository;
+import br.edu.ifba.rmi.consumer2.model.InformationEntity;
+import br.edu.ifba.rmi.consumer2.repository.InformationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -19,9 +19,9 @@ public class GroupMemberService {
         this.informationRepository = informationRepository;
     }
 
-    @RabbitListener(queues = "sql_commands_queue_1")
+    @RabbitListener(queues = "sql_commands_queue_2")
     public void receiveSQLCommandFromQueue(String sql) {
-        logger.info("Received SQL command from queue 1: {}", sql);
+        logger.info("Received SQL command from queue 2: {}", sql);
 
         if (isValidSQL(sql)) {
             executeSQL(sql);
