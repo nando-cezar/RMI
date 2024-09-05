@@ -25,6 +25,6 @@ spring:
     username: ${RABBITMQ_USERNAME}
     password: ${RABBITMQ_PASSWORD}
 
-#rabbitmq:
-  #queue:
-    #name: ${QUEUE_NAME}
+rabbitmq:
+  queue:
+    name: ${QUEUE_NAME}

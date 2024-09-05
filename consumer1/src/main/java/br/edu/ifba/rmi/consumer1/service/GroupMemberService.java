@@ -19,7 +19,7 @@ public class GroupMemberService {
         this.informationRepository = informationRepository;
     }
 
-    @RabbitListener(queues = "sql_commands_queue_1")
+    @RabbitListener(queues = "${rabbitmq.queue.name}")
     public void receiveSQLCommandFromQueue(String sql) {
         logger.info("Received SQL command from queue 1: {}", sql);
 
