@@ -36,14 +36,22 @@ public class RabbitMQConfig {
     }
 
     @Bean
+    public Queue queue3() {
+        return new Queue(rabbitMQCustomProperties.getQueues().get(2), false);
+    }
+
+    @Bean
     public Binding binding1(FanoutExchange fanoutExchange, Queue queue1) {
         return BindingBuilder.bind(queue1).to(fanoutExchange);
     }
 
-    // Faz o binding da fila2 ao Fanout Exchange
     @Bean
     public Binding binding2(FanoutExchange fanoutExchange, Queue queue2) {
         return BindingBuilder.bind(queue2).to(fanoutExchange);
     }
 
+    @Bean
+    public Binding binding3(FanoutExchange fanoutExchange, Queue queue3) {
+        return BindingBuilder.bind(queue3).to(fanoutExchange);
+    }
 }

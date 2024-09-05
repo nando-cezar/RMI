@@ -17,3 +17,4 @@ custom:
     queues:
       - ${QUEUE_NAME_1}
       - ${QUEUE_NAME_2}
+      - ${QUEUE_NAME_3}

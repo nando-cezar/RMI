@@ -73,6 +73,33 @@ services:
     volumes:
       - consumer2_data:/var/lib/postgresql/data
 
+  consumer3:
+    build:
+      context: consumer3
+      dockerfile: Dockerfile
+    container_name: consumer3
+    depends_on:
+      - replication_server
+      - consumer3_db
+      - rabbitmq
+    env_file:
+      - consumer3/.env-dockerfile
+    ports:
+      - "8083:8083"
+
+  consumer3_db:
+    image: postgres:13
+    container_name: consumer3_db
+    restart: always
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: data_db
+    volumes:
+      - consumer3_data:/var/lib/postgresql/data
+
   rabbitmq:
     image: rabbitmq:management
     container_name: rabbitmq
@@ -86,3 +113,4 @@ services:
 volumes:
   consumer1_data:
   consumer2_data:
+  consumer3_data:
